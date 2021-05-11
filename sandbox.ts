@@ -1,40 +1,45 @@
-/*****  Arrays *****/
-// Note: Implicit type set if an array is initialized with elements of one type (e.g. all strings or all numbers). When trying to push or modify an array with implicit types with values not of that type, ts won't allow you to compile the script. If array is initialized with mixed types, then you can modify the array with those types that are specified.
-let names = ['luigi', 'mario', 'yoshi'];
-names.push('toad');
-// names.push(74);
-// names[0] = 3;
-// names = 'hello';
+/***** Explicit Types *****/
+let character: string;
+let age: number;
+let isLoggedIn: boolean;
 
-let numbers = [10, 20, 30, 40];
-numbers.push(25);
-// numbers.push('shawn');
-// numbers[1] = 'sean';
+// age = 'luigi';
+age = 30;
 
-let mixed = ['key', 4, 'chun-li', 8, 9];
-mixed.push('ryu');
-mixed.push(31);
-mixed[0] = 3;
-// mixed.push(true)
+// isLoggedIn = 5;
+isLoggedIn = true;
 
 
-/*****  Objects *****/
-// Note: When initializing an object, type properties are implicitly set for each key in the object. Cannot modify the object property with different type or add a new property.
-let ninja = {
-  name: 'mario',
-  belt: 'black',
-  age: 30
-};
+/***** Arrays *****/
+let ninjas: string[] = [];
+// ninjas = [10, 23];
+ninjas = ['yoshi', 'mario'];
 
-ninja.age = 40;
-ninja.name = 'ryu';
-// ninja.age = '30';
-// ninja.skills = ['fighting', 'sneaking'];
 
-// ninja = 'hi';
-ninja = {
-  name: 'yoshi',
-  belt: 'orange',
-  age: 10, 
-  // skills: ['hyah', 'grrr']
-};
+/***** Union Types *****/
+// Note: Use pipe '|' in order set multiple types for a variable. Arrays require parentheses, whereas regular variables do not.
+let mixed: (string | number | boolean)[] = [];
+mixed.push('hello');
+mixed.push(20);
+mixed.push(false);
+console.log(mixed);
+
+let uid: string|number;
+uid = '123';
+uid = 123;
+
+
+/***** Objects *****/
+// Note: Can declare object type a couple of ways. 1) Set variable to 'object' type, but notice that setting variable to an array is allowable bc an array is a type of object. 2) Set variable to object and name properties and property types.
+let ninjaOne: object;
+ninjaOne = { name: 'yoshi', age: 30 };
+// ninjaOne = 'hello';
+// ninjaOne = []; ----> This is okay! But probably not what we want.
+
+let ninjaTwo: {
+  name: string,
+  age: number,
+  beltColor: string
+}
+
+ninjaTwo = { name: 'mario', age: 20, beltColor: 'black' };
