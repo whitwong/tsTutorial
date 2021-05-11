@@ -1,45 +1,26 @@
-/***** Explicit Types *****/
-let character: string;
-let age: number;
-let isLoggedIn: boolean;
+// Variable declaration //
+let age: any = 25;
 
-// age = 'luigi';
-age = 30;
+age = true;
+console.log(age)
+age = 'hello';
+console.log(age)
+age = { name: 'luigi' };
+console.log(age)
 
-// isLoggedIn = 5;
-isLoggedIn = true;
-
-
-/***** Arrays *****/
-let ninjas: string[] = [];
-// ninjas = [10, 23];
-ninjas = ['yoshi', 'mario'];
-
-
-/***** Union Types *****/
-// Note: Use pipe '|' in order set multiple types for a variable. Arrays require parentheses, whereas regular variables do not.
-let mixed: (string | number | boolean)[] = [];
-mixed.push('hello');
-mixed.push(20);
+// Arrays //
+let mixed: any[] = [];
+mixed.push('mario');
+mixed.push(25);
 mixed.push(false);
 console.log(mixed);
 
-let uid: string|number;
-uid = '123';
-uid = 123;
+// Object //
+let ninja: { name: any, age: any };
+ninja = { name: 'yoshi', age: 25 };
+console.log(ninja);
+ninja = { name: 25, age: 'yoshi' };
+console.log(ninja);
 
 
-/***** Objects *****/
-// Note: Can declare object type a couple of ways. 1) Set variable to 'object' type, but notice that setting variable to an array is allowable bc an array is a type of object. 2) Set variable to object and name properties and property types.
-let ninjaOne: object;
-ninjaOne = { name: 'yoshi', age: 30 };
-// ninjaOne = 'hello';
-// ninjaOne = []; ----> This is okay! But probably not what we want.
-
-let ninjaTwo: {
-  name: string,
-  age: number,
-  beltColor: string
-}
-
-ninjaTwo = { name: 'mario', age: 20, beltColor: 'black' };
+// Note: Use with caution because using 'any' type can negate the benefits of using typescript. But it is useful in case you don't know what the type might be for an object property in the future or something similar.
