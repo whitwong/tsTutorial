@@ -1,6 +1,28 @@
-// Created tsconfig.json via `tsc --init` command.
-// Created a more realistic workflow (aka: public directory and src directory).
-// In tsconfig.json, used rootDir and outDir options to specify root directory where .ts files were and an out directory for the compiled .js files. Now it's possible to just run `tsc` or `tsc -w` in the terminal and typescript will compile all .ts files in the /src directory and place the outputs in the /public directory.
-// Still an issue with placing .ts files at the root of the project --> tsc wants to compile even though we specified a source directory/root directory. Added an "include" option to tsconfig.json to specify that typescript only compile files in the /src directory. "include" option uses an arry type.
+// Can explicity state 'Function' type
+let greet: Function;
+// greet = 'hello';  --> Cannot re-assign greet function to a string value.
+greet = () => {
+  console.log("hello, world");
+}
 
-console.log('mario');
+// Can create optional parameters by adding '?' next to the parameter
+const multiply = (a: number, b: number, c?: number|string) => {
+  console.log(a + b);
+  console.log(c);
+}
+
+// Can give a parameter a default value --> similar to declaring a variable with a value. When there is no return value, typescript interprets the function to return void (or nothing).
+const add = (a: number, b: number, c: number|string = 10) => {
+  console.log(a + b);
+  console.log(c);
+}
+add(30, 1);
+add(5, 10, '20');
+
+// Can define what the expected return value is by adding a data type after function parentheses. Depending on function setup, typescript can infer the data type and there's no reason to explicitly set data type for the function.
+const minus = (a: number, b: number): number => {
+  return a - b;
+}
+
+let result = minus(10, 7);
+// result = 'something else';
