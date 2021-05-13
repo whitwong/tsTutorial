@@ -1,14 +1,27 @@
 "use strict";
-// const anchor = document.querySelector('a')!; // By adding a '!' we're saying that, as developers, we know that an element exists and will return something (e.g. an anchor tag exists, so don't worry about potentially returning a null value).
-// // Runtime check to make sure we have an anchor tag
-// // if(anchor){
-// //   console.log(anchor.href);
-// // }
-// console.log(anchor.href);
-/*** Type Casting ***/
-// const form = document.querySelector('form');
+// classes
+var Invoice = /** @class */ (function () {
+    function Invoice(c, d, a) {
+        this.client = c;
+        this.details = d;
+        this.amount = a;
+    }
+    Invoice.prototype.format = function () {
+        return this.client + " owes $" + this.amount + " for " + this.details;
+    };
+    return Invoice;
+}());
+// instantiate the class and create an object based on it
+var invOne = new Invoice('Yoshi', 'work on the Mario website', 250);
+var invTwo = new Invoice('Luigi', 'work on the Luigi website', 300);
+var invoices = [];
+invoices.push(invOne);
+invoices.push(invTwo);
+invOne.client = 'Mario';
+invTwo.amount = 400;
+console.log(invOne, invTwo);
+console.log(invoices);
 var form = document.querySelector('.new-item-form');
-// console.log(form.children);
 // inputs
 var type = document.querySelector('#type');
 var tofrom = document.querySelector('#tofrom');
