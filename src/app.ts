@@ -1,28 +1,7 @@
-// classes and Access Modifiers
-// Note: When you make a property private, that property is only accessible within the class (e.g. cannot console.log outside the class, but this.details in the class is acceptable). Read-only property makes it accessible outside of the class but cannot modify that property.
-class Invoice {
-  // readonly client: string;
-  // private details: string;
-  // public amount: number;
+// Advantages of modularizing: Code more readable and updateable
+// Drawbacks of modularizing: 1) import/export only available for modern browsers (e.g. updated tsconfig.json to use ES6/es2015). 2) multiple network calls now that we're compiling different .ts files. 
 
-  // constructor(c: string, d: string, a: number) {
-  //   this.client = c;
-  //   this.details = d;
-  //   this.amount = a;
-  // }
-
-  // Note: This way of defining a constructor only works if you add the access modifiers. Will cause errors if you don't have access modifiers in front of properties.
-  constructor( 
-    readonly client: string,
-    private details: string,
-    public amount: number
-  ) {}
-
-  format() {
-    // this.client = 'something else';
-    return `${this.client} owes $${this.amount} for ${this.details}`;
-  }
-}
+import { Invoice } from './classes/Invoice.js';
 
 // instantiate the class and create an object based on it
 const invOne = new Invoice('Mario', 'work on the Mario website', 250);
@@ -33,7 +12,6 @@ invoices.push(invOne);
 invoices.push(invTwo);
 
 invoices.forEach(inv => {
-  // invOne.client = 'something else';
   console.log(inv.client, inv.amount, inv.format());
 })
 
