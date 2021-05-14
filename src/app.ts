@@ -1,35 +1,59 @@
-// Advantages of modularizing: Code more readable and updateable
-// Drawbacks of modularizing: 1) import/export only available for modern browsers (e.g. updated tsconfig.json to use ES6/es2015). 2) multiple network calls now that we're compiling different .ts files. 
+// interface - describes the structure of a class or object. any class or object that uses the interface must conform to the structure/rules of the interface.
+interface IsPerson {
+  name: string;
+  age: number;
+  speak(a: string): void;
+  spend(a: number): number;
+}
 
-import { Invoice } from './classes/Invoice.js';
+const me: IsPerson = {
+  name: 'shaun',
+  age: 30,
+  speak(text: string): void {
+    console.log(text);
+  },
+  spend(amount: number): number {
+    console.log('I spent ', amount);
+    return amount;
+  }
+}
 
-// instantiate the class and create an object based on it
-const invOne = new Invoice('Mario', 'work on the Mario website', 250);
-const invTwo = new Invoice('Luigi', 'work on the Luigi website', 300);
+const greetPerson = (person: IsPerson) => {
+  console.log('hello ', person.name);
+}
 
-let invoices: Invoice[] = [];
-invoices.push(invOne);
-invoices.push(invTwo);
+greetPerson(me);
 
-invoices.forEach(inv => {
-  console.log(inv.client, inv.amount, inv.format());
-})
+console.log(me);
 
-const form = document.querySelector('.new-item-form') as HTMLFormElement;
+// import { Invoice } from './classes/Invoice.js';
 
-// inputs
-const type = document.querySelector('#type') as HTMLSelectElement;
-const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
-const details = document.querySelector('#details') as HTMLInputElement;
-const amount = document.querySelector('#amount') as HTMLInputElement;
+// const invOne = new Invoice('Mario', 'work on the Mario website', 250);
+// const invTwo = new Invoice('Luigi', 'work on the Luigi website', 300);
 
-form.addEventListener('submit', (e: Event) => {
-  e.preventDefault();
+// let invoices: Invoice[] = [];
+// invoices.push(invOne);
+// invoices.push(invTwo);
 
-  console.log(
-    type.value,
-    tofrom.value,
-    details.value,
-    amount.valueAsNumber
-  )
-})
+// invoices.forEach(inv => {
+//   console.log(inv.client, inv.amount, inv.format());
+// })
+
+// const form = document.querySelector('.new-item-form') as HTMLFormElement;
+
+// // inputs
+// const type = document.querySelector('#type') as HTMLSelectElement;
+// const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
+// const details = document.querySelector('#details') as HTMLInputElement;
+// const amount = document.querySelector('#amount') as HTMLInputElement;
+
+// form.addEventListener('submit', (e: Event) => {
+//   e.preventDefault();
+
+//   console.log(
+//     type.value,
+//     tofrom.value,
+//     details.value,
+//     amount.valueAsNumber
+//   )
+// })
