@@ -28,3 +28,38 @@ form.addEventListener('submit', (e: Event) => {
 
   list.render(doc, type.value, 'end');
 })
+
+// GENERICS
+// Create reusable blocks of code, which can be used with different types
+// Note: Can use <T extends object> and just state the type, or be more specific like the definition below <T extends {name: string}>
+const addUID = <T extends {name: string}>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let docOne = addUID({name: 'yoshi', age: 40});
+// let docTwo = addUID('hello');
+
+console.log(docOne.age);
+
+
+// GENERICS w/ Interfaces
+interface Resource<T> {
+  uid: number;
+  resourceName: string;
+  data: T;
+}
+
+const docThree: Resource<object> = {
+  uid: 1,
+  resourceName: 'person',
+  data: { name: 'shaun' }
+}
+
+const docFour: Resource<string[]> = {
+  uid: 2,
+  resourceName: 'shoppingList',
+  data: ['bread', 'milk']
+}
+
+console.log(docThree, docFour);
