@@ -29,37 +29,26 @@ form.addEventListener('submit', (e: Event) => {
   list.render(doc, type.value, 'end');
 })
 
-// GENERICS
-// Create reusable blocks of code, which can be used with different types
-// Note: Can use <T extends object> and just state the type, or be more specific like the definition below <T extends {name: string}>
-const addUID = <T extends {name: string}>(obj: T) => {
-  let uid = Math.floor(Math.random() * 100);
-  return {...obj, uid};
-}
+// ENUMS
+// Used to specify descriptive constants and associate each one with a numeric value.
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
 
-let docOne = addUID({name: 'yoshi', age: 40});
-// let docTwo = addUID('hello');
-
-console.log(docOne.age);
-
-
-// GENERICS w/ Interfaces
 interface Resource<T> {
   uid: number;
-  resourceName: string;
+  resourceType: ResourceType;
   data: T;
 }
 
-const docThree: Resource<object> = {
+const docOne: Resource<object> = {
   uid: 1,
-  resourceName: 'person',
-  data: { name: 'shaun' }
+  resourceType: ResourceType.BOOK,
+  data: { title: 'name of the wind' } 
 }
 
-const docFour: Resource<string[]> = {
-  uid: 2,
-  resourceName: 'shoppingList',
-  data: ['bread', 'milk']
+const docTwo: Resource<object> = {
+  uid: 10,
+  resourceType: ResourceType.PERSON,
+  data: { name: 'yoshi' }  
 }
 
-console.log(docThree, docFour);
+console.log(docOne, docTwo);
